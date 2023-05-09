@@ -1,0 +1,6 @@
+src/config/config.ts
+node_modules
+build
+src/config/LocalConfig.ts
+.vscode
+.idea
