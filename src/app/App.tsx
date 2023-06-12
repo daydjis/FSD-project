@@ -3,8 +3,8 @@ import "app/styles/index.scss";
 import {Link, Route, Routes} from "react-router-dom";
 import {classNames} from "shared/lib/classNames/classNames";
 import {useTheme} from "app/providers/themeProviders";
-import {AboutPage} from "pages /AboutPage";
-import {MainPage} from "pages /MainPage";
+import {AboutPage} from "pages/AboutPage";
+import {MainPage} from "pages/MainPage";
 
 
 const App = () => {
