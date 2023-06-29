@@ -1,6 +1,5 @@
-export  function someFn(q: string) :string {
-    console.log("Random function")
+export function someFn(q: string) :string {
+    console.log('Random function');
 
-    return q
+    return q;
 }
-

@@ -1,19 +1,17 @@
 import React from 'react';
-import {classNames} from "shared/lib/classNames/classNames";
-import cls from "./ThemeSwicher.module.scss"
-import {Theme, useTheme} from "app/providers/themeProviders";
-import DarkTheme from "shared/assets/icons/theme-dark.svg"
-import LightTheme from "shared/assets/icons/theme-light.svg"
-import {Button, ThemeButton} from "shared/ui/Button/Button";
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Theme, useTheme } from 'app/providers/themeProviders';
+import DarkTheme from 'shared/assets/icons/theme-dark.svg';
+import LightTheme from 'shared/assets/icons/theme-light.svg';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import cls from './ThemeSwicher.module.scss';
 
 interface ThemeSwicherProps {
     className?: string;
 }
 
-export const ThemeSwicher = ({className}: ThemeSwicherProps) => {
-
-    const {theme, toggleTheme} = useTheme();
-
+export const ThemeSwicher = ({ className }: ThemeSwicherProps) => {
+    const { theme, toggleTheme } = useTheme();
 
     return (
         <Button
@@ -21,8 +19,7 @@ export const ThemeSwicher = ({className}: ThemeSwicherProps) => {
             className={classNames(cls.ThemeSwicher, {}, [className])}
             onClick={toggleTheme}
         >
-            { theme === Theme.DARK ? <DarkTheme  /> : <LightTheme/>}
+            { theme === Theme.DARK ? <DarkTheme /> : <LightTheme />}
         </Button>
     );
 };
-

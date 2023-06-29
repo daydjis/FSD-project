@@ -1,5 +1,5 @@
-import {LangSwitchers} from "./ui/LangSwitchers";
+import { LangSwitchers } from './ui/LangSwitchers';
 
 export {
-    LangSwitchers
-}
+    LangSwitchers,
+};
