@@ -13,11 +13,14 @@
 .switchers {
     position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     bottom: 20px;
     width: 100%;
+    flex-direction: column;
+    height: calc(100vh - var(--navbar-height));
 }
-
-.lang {
-    margin-left: 20px;
+//todo delete
+.fix {
+    max-width: 100px;
 }
