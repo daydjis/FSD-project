@@ -20,8 +20,7 @@ export function buildPlugins({ paths, isDev } :buildOptions) : webpack.WebpackPl
         new webpack.HotModuleReplacementPlugin(),
 
         new BundleAnalyzerPlugin({
-            openAnalyzer: false
-        }
-        ),
+            openAnalyzer: false,
+        }),
     ];
 }
