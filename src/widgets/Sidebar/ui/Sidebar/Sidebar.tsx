@@ -18,13 +18,19 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
     const { t } = useTranslation();
     return (
-        <div className={
-            classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])
-        }
+        <div
+            data-testid="sidebar"
+            className={
+                classNames(
+                    cls.Sidebar,
+                    { [cls.collapsed]: collapsed },
+                    [className],
+                )
+            }
         >
             <div className={cls.switchers}>
                 <Button
-                    className={cls.fix}
+                    data-testid="sidebar-toggle"
                     type="button"
                     onClick={onToggle}
                 >
