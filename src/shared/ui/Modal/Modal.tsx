@@ -39,6 +39,10 @@ export const Modal = (props: ModalProps) => {
         }
     }, [onClose]);
 
+    const PreventHandler = ((e: React.MouseEvent) => {
+        e.stopPropagation();
+    });
+
     const onKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key === 'escape') {
             CloseHandler();
@@ -59,8 +63,8 @@ export const Modal = (props: ModalProps) => {
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className])}>
-                <div className={cls.overlay}>
-                    <div className={cls.content} onClick={CloseHandler}>
+                <div className={cls.overlay} onClick={CloseHandler}>
+                    <div className={cls.content} onClick={PreventHandler}>
                         {children}
                     </div>
                 </div>
