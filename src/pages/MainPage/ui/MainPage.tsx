@@ -1,11 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Counter } from 'entities/Counter';
 
 const MainPage = () => {
-    const { t } = useTranslation('main');
+    const { t } = useTranslation();
+
     return (
         <div>
-            <h1>{t('Главная')}</h1>
+            {t('Главная страница')}
+            <Counter />
         </div>
     );
 };

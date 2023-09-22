@@ -1,16 +1,36 @@
-import React from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { useTranslation } from 'react-i18next';
+import { Modal } from 'shared/ui/Modal/Modal';
+import React, { useCallback, useState } from 'react';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;
 }
-export const Navbar = ({ className }: NavbarProps) => (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-        <div className={cls.Links}>
-            <AppLink theme={AppLinkTheme.SECONDARY} className={cls.MainLink} to="/">Главная</AppLink>
-            <AppLink theme={AppLinkTheme.SECONDARY} to="/about">О себе</AppLink>
+
+export const Navbar = ({ className }: NavbarProps) => {
+    const { t } = useTranslation();
+    const [IsAuthModal, setIsIsAuthModal] = useState(false);
+
+    const onToogleBtn = useCallback(() => {
+        setIsIsAuthModal((prev) => !prev);
+    }, []);
+
+    return (
+        <div className={classNames(cls.Navbar, {}, [className])}>
+            <Button
+                onClick={onToogleBtn}
+                theme={ButtonTheme.OUTLINE}
+                className={cls.links}
+            >
+                {t('Войти')}
+            </Button>
+            <Modal isOpen={IsAuthModal} onClose={onToogleBtn}>
+                adasdasdadas adasdasdadasadasdasdadasadas
+                dasdadasadasdasdadasadas
+                dasdadasadasdasdadas
+            </Modal>
         </div>
-    </div>
-);
+    );
+};
