@@ -24,6 +24,7 @@ export const Modal = (props: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
 
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
