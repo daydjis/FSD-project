@@ -2,6 +2,7 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { authReducer } from 'entities/Auth';
+import { profileReducer } from 'entities/Profile/model/slice /ProfileSlice';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
@@ -9,6 +10,7 @@ export function createReduxStore(initialState?: StateSchema) {
         counter: counterReducer,
         user: userReducer,
         auth: authReducer,
+        profile: profileReducer,
     };
 
     return configureStore<StateSchema>({
