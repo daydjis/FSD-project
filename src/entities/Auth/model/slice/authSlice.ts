@@ -27,6 +27,7 @@ export const authSlice = createSlice({
             })
             .addCase(loginByUsername.fulfilled, (state) => {
                 state.isLoading = false;
+                window.location.href = '/profile';
             })
             .addCase(loginByUsername.rejected, (state, action) => {
                 state.isLoading = false;
