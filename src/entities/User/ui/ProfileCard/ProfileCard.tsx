@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Profile } from 'entities/Profile';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
@@ -14,14 +14,26 @@ interface ProfileCardProps {
   loading?: boolean;
   error?: string;
   readonly?: boolean;
+  onEdit?: () => void;
+  onCancelEdit?: () => void;
+  onSave?: () => void;
+  onChangeFirstName?: (value?: string) => void;
+  onChangeUserName?: (value?: string) => void;
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
     const {
-        readonly, className, data, loading, error,
+        readonly,
+        className,
+        data,
+        loading,
+        error,
+        onEdit,
+        onSave,
+        onCancelEdit,
+        onChangeFirstName,
+        onChangeUserName,
     } = props;
-
-    const changeReadOnlyMode = () => {};
 
     if (loading) {
         return (
@@ -54,22 +66,41 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.profileInfoWrapper}>
                 <div className={cls.profileInfoInput}>
-                    <Input placeholder="Name" value={data?.first} />
-                    <Input placeholder="Role" value={data?.username} />
+                    <Input
+                        onChange={onChangeFirstName}
+                        readonly={readonly}
+                        placeholder="Name"
+                        value={data?.first}
+                    />
+                    <Input
+                        onChange={onChangeUserName}
+                        readonly={readonly}
+                        placeholder="Role"
+                        value={data?.username}
+                    />
                 </div>
                 <Avatar src={data?.avatar} width={135} height={135} />
             </div>
             {readonly ? (
-                <Button className={cls.Profilebtn} onClick={changeReadOnlyMode}>
+                <Button className={cls.Profilebtn} onClick={onEdit}>
                     Редактировать
                 </Button>
             ) : (
-                <Button
-                    className={cls.Profilebtn}
-                    onClick={() => {}}
-                >
-                    Отменить
-                </Button>
+                <div>
+                    <Button
+                        theme={ButtonTheme.CLEAR}
+                        className={cls.Profilebtn}
+                        onClick={onCancelEdit}
+                    >
+                        Отменить
+                    </Button>
+                    <Button
+                        className={cls.Profilebtn}
+                        onClick={onSave}
+                    >
+                        Сохранить
+                    </Button>
+                </div>
             )}
         </div>
     );

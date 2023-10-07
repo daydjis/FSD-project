@@ -11,13 +11,15 @@
 }
 
 .readonly {
-  background-color: gray;
   opacity: 0.7;
+  input {
+    border: none;
+  }
 }
 
 input {
   border: 1px solid var(--inverted-bg-color);
-  padding: 10px;
+  padding: 5px;
   color: var(--primary-color);
   background-color: transparent;
 }

@@ -1,4 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
+import { memo } from 'react';
 import cls from './Avatar.module.scss';
 
 interface AvatarProps {
@@ -8,7 +9,7 @@ interface AvatarProps {
     height?: number;
 }
 
-export const Avatar = (props: AvatarProps) => {
+export const Avatar = memo((props: AvatarProps) => {
     const {
         className,
         src,
@@ -25,4 +26,4 @@ export const Avatar = (props: AvatarProps) => {
             />
         </div>
     );
-};
+});
