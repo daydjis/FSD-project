@@ -1,44 +1,52 @@
-import React, { useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ThemeSwicher } from 'widgets/ThemeSwicher';
-import { LangSwitchers } from 'widgets/LangSwitchers';
+import {memo, useState} from 'react';
+import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/ui/Button/Button';
+import { SideBarItemList } from 'widgets/Sidebar/model/model';
+import { SidebarItem } from 'widgets/Sidebar/ui/SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
     className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
+export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
+    const { t } = useTranslation();
+
     const onToggle = () => {
-        setCollapsed((prevState) => !prevState);
+        setCollapsed((prev) => !prev);
     };
 
-    const { t } = useTranslation();
     return (
         <div
             data-testid="sidebar"
-            className={
-                classNames(
-                    cls.Sidebar,
-                    { [cls.collapsed]: collapsed },
-                    [className],
-                )
-            }
+            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         >
+            <Button
+                data-testid="sidebar-toggle"
+                onClick={onToggle}
+                className={cls.collapseBtn}
+                theme={ButtonTheme.BACKGROUND_INVERTED}
+                size={ButtonSize.L}
+                square
+            >
+                {collapsed ? '>' : '<'}
+            </Button>
+            <div className={cls.items}>
+                { SideBarItemList.map((item) => (
+                    <SidebarItem key={item.path} item={item} collapse={collapsed} />
+                ))}
+            </div>
             <div className={cls.switchers}>
-                <Button
-                    data-testid="sidebar-toggle"
-                    type="button"
-                    onClick={onToggle}
-                >
-                    { t('Развернуть')}
-                </Button>
-                <ThemeSwicher />
-                <LangSwitchers />
+                <ThemeSwitcher />
+                <LangSwitcher
+                    short={collapsed}
+                    className={cls.lang}
+                />
             </div>
         </div>
     );
-};
+});

@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Counter } from 'entities/Counter';
+import { Input } from 'shared/ui/Input/Input';
 
 const MainPage = () => {
-    const { t } = useTranslation('main');
+    const { t } = useTranslation();
+
+    const [value, setValue] = useState('');
+
+    const onChangeHandler = (val: string) => {
+        setValue(val);
+    };
+
     return (
         <div>
-            <h1>{t('Главная')}</h1>
+            {t('Главная страница')}
+            <Counter />
+
+            <Input
+                value={value}
+                onChange={onChangeHandler}
+                placeholder="Введите текст"
+            />
         </div>
     );
 };
