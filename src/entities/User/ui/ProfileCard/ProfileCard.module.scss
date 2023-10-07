@@ -12,10 +12,13 @@
   display: flex;
   flex-direction: column;
 }
-.profileimg {
-  max-width: 135px;
-}
 
+.loading {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .Profilebtn {
   max-width: 150px;
 }
