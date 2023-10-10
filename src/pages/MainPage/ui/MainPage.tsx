@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Counter } from 'entities/Counter';
-import { Input } from 'shared/ui/Input/Input';
+import { Select } from 'shared/ui/Select/Select';
+import { Currency } from 'shared/const/common';
 
 const MainPage = () => {
     const { t } = useTranslation();
 
-    const [value, setValue] = useState('');
-
-    const onChangeHandler = (val: string) => {
-        setValue(val);
-    };
-
     return (
         <div>
             {t('Главная страница')}
-            <Counter />
-
-            <Input
-                value={value}
-                onChange={onChangeHandler}
-                placeholder="Введите текст"
+            <Select
+                label="label"
+                options={[
+                    {
+                        value: Currency.RUB,
+                        option: Currency.RUB,
+                    },
+                    {
+                        value: Currency.EUR,
+                        option: Currency.EUR,
+                    },
+                    {
+                        value: Currency.USD,
+                        option: Currency.USD,
+                    },
+                ]}
             />
         </div>
     );

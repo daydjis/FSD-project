@@ -1,47 +1,132 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
+import { Profile } from 'entities/Profile';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Loader } from 'shared/ui/Loader/Loader';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { memo } from 'react';
 import cls from './ProfileCard.module.scss';
-import {useSelector} from "react-redux";
-import {getProfileInfo} from "entities/Profile/model/selector/getProfileInfo";
-import {Button} from "shared/ui/Button/Button";
-import {Input} from "shared/ui/Input/Input";
 
 interface ProfileCardProps {
-    className?: string;
+  className?: string;
+  data?: Profile;
+  loading?: boolean;
+  error?: string;
+  readonly?: boolean;
+  onEdit?: () => void;
+  onCancelEdit?: () => void;
+  onSave?: () => void;
+  onChangeFirstName?: (value?: string) => void;
+  onChangeUserName?: (value?: string) => void;
+  onChangeAge?: (value?: string) => void;
+  onChangeLastName?: (value?: string) => void;
+  onChangeAvatarUrl?: (value?: string) => void;
 }
 
-export const ProfileCard = (props: ProfileCardProps) => {
-
+export const ProfileCard = memo((props: ProfileCardProps) => {
     const {
+        onChangeAge,
+        onChangeLastName,
+        onChangeAvatarUrl,
+        readonly,
         className,
+        data,
+        loading,
+        error,
+        onEdit,
+        onSave,
+        onCancelEdit,
+        onChangeFirstName,
+        onChangeUserName,
     } = props;
 
-    const profileData= useSelector(getProfileInfo);
+    if (loading) {
+        return (
+            <div
+                className={classNames(cls.ProfileCard, { [cls.loading]: true }, [
+                    className,
+                ])}
+            >
+                <Loader />
+            </div>
+        );
+    }
 
-    const changeReadOnlyMode = () => {
-
+    if (error) {
+        return (
+            <div
+                className={classNames(cls.ProfileCard, { [cls.error]: true }, [
+                    className,
+                ])}
+            >
+                <Text
+                    theme={TextTheme.ERROR}
+                    title="Что то пошло не так обновите страницу"
+                />
+            </div>
+        );
     }
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.profileInfoWrapper}>
-              <div className={cls.profileInfoInput}>
-                  <Input
-                      placeholder='Name'
-                      value={profileData?.first}
-                  />
-                  <Input
-                      placeholder="Role"
-                      value={profileData?.username}
-                  />
-              </div>
-                <img src={profileData?.avatar} className={cls.profileimg} />
+                <div className={cls.profileInfoInput}>
+                    <Input
+                        onChange={onChangeFirstName}
+                        readonly={readonly}
+                        placeholder="Name"
+                        value={data?.first}
+                    />
+                    <Input
+                        onChange={onChangeUserName}
+                        readonly={readonly}
+                        placeholder="Role"
+                        value={data?.username}
+                    />
+                    <Input
+                        onChange={onChangeLastName}
+                        readonly={readonly}
+                        placeholder="lastname"
+                        value={data?.lastname}
+                    />
+                    <Input
+                        onChange={onChangeAge}
+                        readonly={readonly}
+                        placeholder="age"
+                        value={data?.age}
+                        type="number"
+                    />
+                    <Input
+                        onChange={onChangeAvatarUrl}
+                        readonly={readonly}
+                        placeholder="avatar url"
+                        value={data?.avatar}
+                    />
+                </div>
+                <Avatar src={data?.avatar} width={135} height={135} />
             </div>
-                <Button
-                    className={cls.Profilebtn}
-                    onClick={changeReadOnlyMode}
-                >
+            {readonly ? (
+                <Button className={cls.Profilebtn} onClick={onEdit}>
                     Редактировать
                 </Button>
+            ) : (
+                <>
+                    <Button
+                        onClick={onSave}
+                        className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
+                    >
+                        Сохранить
+                    </Button>
+                    <Button
+                        className={cls.Profilebtn}
+                        theme={ButtonTheme.RED}
+                        onClick={onCancelEdit}
+                    >
+                        Отменить
+                    </Button>
+                </>
+            )}
         </div>
     );
-};
+});

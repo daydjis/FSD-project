@@ -1,4 +1,4 @@
-import {classNames, Mods} from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import {
     ButtonHTMLAttributes, FC, memo, ReactNode,
 } from 'react';
@@ -10,6 +10,7 @@ export enum ButtonTheme {
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
     INVERTED_OUTLINE = 'invertedOutline',
+    RED = 'red'
 }
 
 export enum ButtonSize {
