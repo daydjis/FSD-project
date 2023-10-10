@@ -1,23 +1,19 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import {
-    fetchProfileData, Profile, profileActions, profileReducer, updateProfileData,
+    fetchProfileData, getProfileError, getProfileInfoForm,
+    getProfileLoading, getProfileReadonly, profileActions, profileReducer, updateProfileData,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ProfileCard } from 'entities/User/ui/ProfileCard/ProfileCard';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import { getProfileError } from 'entities/Profile/model/selector/getProfileError';
-import { getProfileLoading } from 'entities/Profile/model/selector/getProfileLoading';
-import { getProfileReadonly } from 'entities/Profile/model/selector/getProfileReadonly';
-import { getProfileInfoForm } from 'entities/Profile/model/selector/getProfileInfoForm';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
     className?: string;
 }
-
-const ProfilePage = (props: ProfilePageProps) => {
+const ProfilePage = memo((props: ProfilePageProps) => {
     const {
         className,
     } = props;
@@ -56,10 +52,25 @@ const ProfilePage = (props: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ first: value || '' }));
     }, [dispatch]);
 
+    const onChangeAge = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ age: Number(value) || 0 }));
+    }, [dispatch]);
+
+    const onChangeLastName = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ lastname: value || '' }));
+    }, [dispatch]);
+
+    const onChangeAvatarUrl = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ avatar: value || '' }));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ProfilePage, {}, [className])}>
                 <ProfileCard
+                    onChangeAge={onChangeAge}
+                    onChangeLastName={onChangeLastName}
+                    onChangeAvatarUrl={onChangeAvatarUrl}
                     onSave={onSave}
                     onChangeFirstName={onChangeFormFirst}
                     onChangeUserName={onChangeFromUsername}
@@ -73,6 +84,6 @@ const ProfilePage = (props: ProfilePageProps) => {
             </div>
         </DynamicModuleLoader>
     );
-};
+});
 
 export default ProfilePage;

@@ -11,3 +11,9 @@ export {
     fetchProfileData,
     updateProfileData,
 };
+
+export { getProfileError } from './model/selector/getProfileError/getProfileError';
+export { getProfileLoading } from './model/selector/getProfileLoading/getProfileLoading';
+export { getProfileInfo } from './model/selector/getProfileInfo/getProfileInfo';
+export { getProfileReadonly } from './model/selector/getProfileReadonly/getProfileReadonly';
+export { getProfileInfoForm } from './model/selector/getProfileInfoForm/getProfileInfoForm';

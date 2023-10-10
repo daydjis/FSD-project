@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Profile } from 'entities/Profile';
@@ -19,10 +19,16 @@ interface ProfileCardProps {
   onSave?: () => void;
   onChangeFirstName?: (value?: string) => void;
   onChangeUserName?: (value?: string) => void;
+  onChangeAge?: (value?: string) => void;
+  onChangeLastName?: (value?: string) => void;
+  onChangeAvatarUrl?: (value?: string) => void;
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
     const {
+        onChangeAge,
+        onChangeLastName,
+        onChangeAvatarUrl,
         readonly,
         className,
         data,
@@ -78,6 +84,25 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         placeholder="Role"
                         value={data?.username}
                     />
+                    <Input
+                        onChange={onChangeLastName}
+                        readonly={readonly}
+                        placeholder="lastname"
+                        value={data?.lastname}
+                    />
+                    <Input
+                        onChange={onChangeAge}
+                        readonly={readonly}
+                        placeholder="age"
+                        value={data?.age}
+                        type="number"
+                    />
+                    <Input
+                        onChange={onChangeAvatarUrl}
+                        readonly={readonly}
+                        placeholder="avatar url"
+                        value={data?.avatar}
+                    />
                 </div>
                 <Avatar src={data?.avatar} width={135} height={135} />
             </div>
@@ -86,21 +111,21 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     Редактировать
                 </Button>
             ) : (
-                <div>
+                <>
                     <Button
-                        theme={ButtonTheme.CLEAR}
+                        onClick={onSave}
+                        className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
+                    >
+                        Сохранить
+                    </Button>
+                    <Button
                         className={cls.Profilebtn}
+                        theme={ButtonTheme.RED}
                         onClick={onCancelEdit}
                     >
                         Отменить
                     </Button>
-                    <Button
-                        className={cls.Profilebtn}
-                        onClick={onSave}
-                    >
-                        Сохранить
-                    </Button>
-                </div>
+                </>
             )}
         </div>
     );
