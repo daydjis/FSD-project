@@ -1,13 +1,20 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useCallback, useEffect } from 'react';
 import {
-    fetchProfileData, getProfileError, getProfileInfoForm,
-    getProfileLoading, getProfileReadonly, profileActions, profileReducer, updateProfileData,
+    fetchProfileData,
+    getProfileError,
+    getProfileInfoForm,
+    getProfileLoading,
+    getProfileReadonly,
+    profileActions,
+    profileReducer,
+    updateProfileData,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ProfileCard } from 'entities/User/ui/ProfileCard/ProfileCard';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
+import { Country, Currency } from 'shared/const/common';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -64,6 +71,14 @@ const ProfilePage = memo((props: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ avatar: value || '' }));
     }, [dispatch]);
 
+    const onChangeCurrancy = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ currency: value as Currency || '' }));
+    }, [dispatch]);
+
+    const onChangeCountry = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({ country: value as Country || '' }));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ProfilePage, {}, [className])}>
@@ -74,6 +89,8 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     onSave={onSave}
                     onChangeFirstName={onChangeFormFirst}
                     onChangeUserName={onChangeFromUsername}
+                    onChangeCurrancy={onChangeCurrancy}
+                    onChangeCountry={onChangeCountry}
                     onEdit={onEdit}
                     onCancelEdit={onCancelEdit}
                     readonly={profileReadOnly}

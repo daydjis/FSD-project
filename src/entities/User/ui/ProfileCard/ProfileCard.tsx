@@ -5,7 +5,9 @@ import { Profile } from 'entities/Profile';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { memo } from 'react';
+import React, { memo } from 'react';
+import { Select } from 'shared/ui/Select/Select';
+import { Country, Currency } from 'shared/const/common';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -22,6 +24,8 @@ interface ProfileCardProps {
   onChangeAge?: (value?: string) => void;
   onChangeLastName?: (value?: string) => void;
   onChangeAvatarUrl?: (value?: string) => void;
+  onChangeCurrancy?: (value?: string) => void;
+  onChangeCountry?: (value?: string) => void;
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
@@ -39,6 +43,8 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         onCancelEdit,
         onChangeFirstName,
         onChangeUserName,
+        onChangeCurrancy,
+        onChangeCountry,
     } = props;
 
     if (loading) {
@@ -103,6 +109,26 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         placeholder="avatar url"
                         value={data?.avatar}
                     />
+                    <Select
+                        disabled={readonly}
+                        className={cls.selectm}
+                        value={data?.currency}
+                        onChange={onChangeCurrancy}
+                        label="Currency"
+                        options={
+                            Object.keys(Currency).map((el) => ({ value: el, option: el }))
+                        }
+                    />
+                    <Select
+                        disabled={readonly}
+                        value={data?.country}
+                        onChange={onChangeCountry}
+                        label="Country"
+                        options={
+                            Object.keys(Country).map((el) => ({ value: el, option: el }))
+                        }
+                    />
+
                 </div>
                 <Avatar src={data?.avatar} width={135} height={135} />
             </div>

@@ -1,5 +1,6 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { ChangeEvent, useMemo } from 'react';
+import { Currency } from 'shared/const/common';
 import cls from './Select.module.scss';
 
 interface OptionsObj {
@@ -8,6 +9,7 @@ interface OptionsObj {
 }
 
 interface SelectProps {
+    disabled?: boolean;
     className?: string;
     label?: string;
     value?: string;
@@ -17,6 +19,7 @@ interface SelectProps {
 
 export const Select = (props: SelectProps) => {
     const {
+        disabled = false,
         className,
         label,
         onChange,
@@ -25,7 +28,6 @@ export const Select = (props: SelectProps) => {
     } = props;
 
     const mods: Mods = {
-
     };
 
     const onSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
@@ -53,6 +55,7 @@ export const Select = (props: SelectProps) => {
                 </span>
             )}
             <select
+                disabled={disabled}
                 onChange={onSelect}
                 className={cls.Select}
                 value={value}

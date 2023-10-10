@@ -18,12 +18,11 @@ export const Avatar = memo((props: AvatarProps) => {
     } = props;
 
     return (
-        <div className={classNames(cls.Avatar, {}, [className])}>
-            <img
-                src={src}
-                width={width}
-                height={height}
-            />
-        </div>
+        <img
+            className={classNames(cls.Avatar, {}, [className])}
+            src={src}
+            width={width}
+            height={height}
+        />
     );
 });

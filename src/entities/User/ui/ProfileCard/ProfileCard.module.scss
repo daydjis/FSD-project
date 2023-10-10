@@ -1,25 +1,32 @@
 .ProfileCard {
-  border: 2px solid var(--secondary-color);
-  padding: 20px;
+    border: 2px solid var(--secondary-color);
+    padding: 20px;
 }
+
 .profileInfoWrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .profileInfoInput {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .loading {
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .Profilebtn {
-  max-width: 150px;
-  margin-right: 10px;
+    max-width: 150px;
+    margin-right: 10px;
+}
+
+.selectm {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
