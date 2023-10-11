@@ -4,7 +4,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { getAuthUserData } from 'entities/User';
 import React from 'react';
 
-export function RequireAuth({ children }: { children: any }) {
+export function RequireAuth({ children }: { children: JSX.Element }) {
     const auth = useSelector(getAuthUserData);
     const location = useLocation();
 
