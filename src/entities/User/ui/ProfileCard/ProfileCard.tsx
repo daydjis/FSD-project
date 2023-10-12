@@ -5,7 +5,7 @@ import { Profile } from 'entities/Profile';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Select } from 'shared/ui/Select/Select';
 import { Country, Currency } from 'shared/const/common';
 import cls from './ProfileCard.module.scss';
@@ -46,6 +46,10 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         onChangeCurrancy,
         onChangeCountry,
     } = props;
+
+    const parseCurrancy = useMemo(() => Object.keys(Currency).map((el) => ({ value: el, option: el })), []);
+
+    const parseCountry = useMemo(() => Object.keys(Country).map((el) => ({ value: el, option: el })), []);
 
     if (loading) {
         return (
@@ -116,7 +120,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeCurrancy}
                         label="Currency"
                         options={
-                            Object.keys(Currency).map((el) => ({ value: el, option: el }))
+                            parseCurrancy
                         }
                     />
                     <Select
@@ -125,7 +129,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeCountry}
                         label="Country"
                         options={
-                            Object.keys(Country).map((el) => ({ value: el, option: el }))
+                            parseCountry
                         }
                     />
 

@@ -1,6 +1,5 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { ChangeEvent, useMemo } from 'react';
-import { Currency } from 'shared/const/common';
+import { ChangeEvent, memo, useMemo } from 'react';
 import cls from './Select.module.scss';
 
 interface OptionsObj {
@@ -17,7 +16,7 @@ interface SelectProps {
     onChange?: (value: string) => void
 }
 
-export const Select = (props: SelectProps) => {
+export const Select = memo((props: SelectProps) => {
     const {
         disabled = false,
         className,
@@ -64,4 +63,4 @@ export const Select = (props: SelectProps) => {
             </select>
         </div>
     );
-};
+});

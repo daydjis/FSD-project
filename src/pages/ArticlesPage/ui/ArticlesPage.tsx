@@ -1,6 +1,6 @@
 const ArticlesPage = () => (
     <div>
-        ArticlesPage
+        Articles
     </div>
 );
 
