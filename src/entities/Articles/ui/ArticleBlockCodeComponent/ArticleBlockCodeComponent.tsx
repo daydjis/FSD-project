@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleCodeBlock } from 'entities/Articles/model/types/Articles';
-import React from 'react';
+import React, { memo } from 'react';
 import { Code } from 'shared/ui/Code/Code';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './ArticleBlockCodeComponent.module.scss';
@@ -10,7 +10,7 @@ interface ArticleBlockCodeComponentProps {
     block?: ArticleCodeBlock
 }
 
-export const ArticleBlockCodeComponent = (props: ArticleBlockCodeComponentProps) => {
+export const ArticleBlockCodeComponent = memo((props: ArticleBlockCodeComponentProps) => {
     const {
         className,
         block,
@@ -32,4 +32,4 @@ export const ArticleBlockCodeComponent = (props: ArticleBlockCodeComponentProps)
             <Code codeProps={block?.code} />
         </div>
     );
-};
+});

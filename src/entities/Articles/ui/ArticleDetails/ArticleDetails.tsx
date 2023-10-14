@@ -68,8 +68,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 <Skeleton height={200} widht={200} border="50%" />
                 <Skeleton height={50} widht="100%" />
                 <Skeleton height={50} widht="100%" />
+                <Skeleton height={200} widht={300} />
+                <Skeleton height={400} widht="100%" />
                 <Skeleton height={200} widht="100%" />
-                <Skeleton height={200} widht="100%" />
+                <Skeleton height={200} widht={300} />
             </>
         );
     } else if (ArticleError) {

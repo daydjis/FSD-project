@@ -1,6 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { ArticleImageBlock } from 'entities/Articles/model/types/Articles';
+import { memo } from 'react';
 import cls from './ArticleBlockImageComponent.module.scss';
 
 interface ArticleBlockImageComponentProps {
@@ -8,7 +9,7 @@ interface ArticleBlockImageComponentProps {
     block?: ArticleImageBlock
 }
 
-export const ArticleBlockImageComponent = (props: ArticleBlockImageComponentProps) => {
+export const ArticleBlockImageComponent = memo((props: ArticleBlockImageComponentProps) => {
     const {
         className,
         block,
@@ -19,4 +20,4 @@ export const ArticleBlockImageComponent = (props: ArticleBlockImageComponentProp
             <Avatar src={block?.src} width={600} />
         </div>
     );
-};
+});
