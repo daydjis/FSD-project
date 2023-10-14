@@ -2,9 +2,13 @@
     cursor: pointer;
     color: var(--primary-color);
     padding: 6px 15px;
+    &:hover {
+        opacity: 0.5;
+    }
 }
 
 .clear {
+    border-radius: 5px;
     padding: 0;
     border: none;
     background: none;
@@ -13,17 +17,20 @@
 
 .red {
     color: var(--red-dark);
-    border: 1px solid var(--red-dark);
+    border-radius: 5px;
+    border: 2px solid var(--red-dark);
 }
 
 .invertedOutline {
+    border-radius: 5px;
     color: var(--inverted-primary-color);
-    border: 1px solid var(--inverted-primary-color);
+    border: 2px solid var(--inverted-primary-color);
     background: none;
 }
 .outline {
-    border: 1px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color);
     color: var(--secondary-color);
+    border-radius: 5px;
     background: none;
 }
 

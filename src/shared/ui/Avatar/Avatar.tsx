@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
+import { CSSProperties, memo } from 'react';
 import cls from './Avatar.module.scss';
 
 interface AvatarProps {
@@ -7,6 +7,7 @@ interface AvatarProps {
     src?: string;
     width?: number;
     height?: number;
+    border?: number | string;
 }
 
 export const Avatar = memo((props: AvatarProps) => {
@@ -15,14 +16,19 @@ export const Avatar = memo((props: AvatarProps) => {
         src,
         height,
         width,
+        border,
     } = props;
 
+    const styles: CSSProperties = {
+        borderRadius: border,
+    };
     return (
         <img
-            className={classNames(cls.Avatar, {}, [className])}
+            className={classNames(cls.Avatar, {}, [])}
             src={src}
             width={width}
             height={height}
+            style={styles}
         />
     );
 });

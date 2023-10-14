@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 const ArticlesPage = () => (
     <div>
-        Articles
+        <Link to="1" title="статья 1">Статья</Link>
     </div>
 );
 

@@ -133,30 +133,30 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         }
                     />
 
+                    {readonly ? (
+                        <Button className={cls.Profilebtn} onClick={onEdit}>
+                            Редактировать
+                        </Button>
+                    ) : (
+                        <>
+                            <Button
+                                onClick={onSave}
+                                className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
+                            >
+                                Сохранить
+                            </Button>
+                            <Button
+                                className={cls.Profilebtn}
+                                theme={ButtonTheme.RED}
+                                onClick={onCancelEdit}
+                            >
+                                Отменить
+                            </Button>
+                        </>
+                    )}
                 </div>
-                <Avatar src={data?.avatar} width={135} height={135} />
+                <Avatar src={data?.avatar} width={200} height={200} border="50%" />
             </div>
-            {readonly ? (
-                <Button className={cls.Profilebtn} onClick={onEdit}>
-                    Редактировать
-                </Button>
-            ) : (
-                <>
-                    <Button
-                        onClick={onSave}
-                        className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
-                    >
-                        Сохранить
-                    </Button>
-                    <Button
-                        className={cls.Profilebtn}
-                        theme={ButtonTheme.RED}
-                        onClick={onCancelEdit}
-                    >
-                        Отменить
-                    </Button>
-                </>
-            )}
         </div>
     );
 });

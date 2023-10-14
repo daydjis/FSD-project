@@ -5,13 +5,12 @@
 
 .profileInfoWrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
 }
 
 .profileInfoInput {
-    display: flex;
-    flex-direction: column;
+
 }
 
 .loading {
@@ -22,6 +21,7 @@
 }
 
 .Profilebtn {
+    margin-top: 20px;
     max-width: 150px;
     margin-right: 10px;
 }

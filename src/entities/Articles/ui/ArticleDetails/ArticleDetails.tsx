@@ -12,6 +12,11 @@ import {
 } from 'entities/Articles/model/selectors/ArticleDetails';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { ArticleBlockCodeComponent } from 'entities/Articles/ui/ArticleBlockCodeComponent/ArticleBlockCodeComponent';
+import { ArticleBlockType } from 'entities/Articles/model/types/Articles';
+import { ArticleBlockImageComponent } from 'entities/Articles/ui/ArticleBlockImageComponent/ArticleBlockImageComponent';
+import { ArticleBlockTextComponent } from 'entities/Articles/ui/ArticleBlockTextComponent/ArticleBlockTextComponent';
 import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
@@ -32,18 +37,35 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     const Article = useSelector(getArticleDetailsData);
     const ArticleError = useSelector(getArticleDetailsError);
-    const IsLoading = useSelector(getArticleDetailsIsLoading);
+    const isLoading = useSelector(getArticleDetailsIsLoading);
 
     useEffect(() => {
         dispatch(fetchArticleById(String(id)));
     }, [id, dispatch]);
 
+    const ArticleBlockList = Article?.blocks.map((block) => {
+        switch (block.type) {
+        case ArticleBlockType.CODE: {
+            return <ArticleBlockCodeComponent key={block.id} block={block} />;
+        }
+        case ArticleBlockType.IMAGE: {
+            return <ArticleBlockImageComponent key={block.id} block={block} />;
+        }
+        case ArticleBlockType.TEXT: {
+            return <ArticleBlockTextComponent key={block.id} block={block} />;
+        }
+        default: {
+            return null;
+        }
+        }
+    });
+
     let content;
 
-    if (true) {
+    if (isLoading) {
         content = (
             <>
-                <Skeleton height={150} widht={150} border="50%" />
+                <Skeleton height={200} widht={200} border="50%" />
                 <Skeleton height={50} widht="100%" />
                 <Skeleton height={50} widht="100%" />
                 <Skeleton height={200} widht="100%" />
@@ -56,7 +78,15 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     } else {
         content = (
-            <div> Статья </div>
+            <>
+                <div className={cls.ArticleDetailsTitle}>
+                    <Avatar src={Article?.img} width={200} height={200} />
+                    <Text title={String(Article?.title)} />
+                    <Text text={`Просмотров: ${String(Article?.views)}`} />
+                    <Text text={`Статья от ${Article?.createdAt}`} />
+                </div>
+                {ArticleBlockList}
+            </>
         );
     }
     return (
