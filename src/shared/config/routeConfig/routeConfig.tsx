@@ -23,7 +23,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ART_DETAILS]: '/articles/',
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE]: '/profile/',
     // последний
     [AppRoutes.NOT_FOUND]: '*',
 };
@@ -48,7 +48,7 @@ export const routeConfig: Record<AppRoutes, AuthProps> = {
         element: <ArticlePageDetails />,
     },
     [AppRoutes.PROFILE]: {
-        path: RoutePath.profile,
+        path: `${RoutePath.profile}:id`,
         isAuth: true,
         element: <ProfilePage />,
     },

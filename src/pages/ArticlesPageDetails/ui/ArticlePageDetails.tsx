@@ -15,6 +15,7 @@ import {
     getArticleCommentsError,
     getArticleCommentsIsLoading,
 } from 'pages/ArticlesPageDetails/model/selectors/getComments/Comments';
+import { AddCommentForm } from 'futures/AddCommentForm';
 import cls from './ArticlePageDetails.module.scss';
 
 interface ArticlesPageDetailsProps {
@@ -55,6 +56,7 @@ const ArticlesPageDetails = (props: ArticlesPageDetailsProps) => {
             <div className={cls.ArticleBlockTextComponent}>
                 <ArticleDetails id={id} />
                 <Text title="Комментарии" />
+                <AddCommentForm />
                 <CommentList isLoading={isLoading} commentList={comments} />
             </div>
         </DynamicModuleLoader>

@@ -102,6 +102,30 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "3",
+      "userId": "1",
+      "text": "отличная статья",
+      "id": "84JKjDv"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "asdasd12",
+      "id": "wa5RXkT"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "asdasd12",
+      "id": "b7P1PDg"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "asdsad12",
+      "id": "o1IfvHk"
     }
   ],
   "users": [
@@ -117,17 +141,31 @@
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar": "https://sun7-20.userapi.com/impg/a7Jb5JmdfcX2vSgZNBRHdrRgQEnEis7snS7Z7A/tKycwZWdozg.jpg?size=798x1064&quality=96&sign=840d497f0eeb4033ff96e4159a7fc274&type=album"
+      "avatar": "https://sun9-38.userapi.com/impg/1_5ms0eDub6NxpAwzuX-yZ1XoC2Rb6Jws1jNOw/VoQd37IOYv8.jpg?size=564x745&quality=96&sign=e8b6bf43944a914a1ac94bdd11ac4b45&type=album"
     }
   ],
-  "profile": {
-    "first": "jghdsdddd",
-    "lastname": "asfdsdsddssddsds",
-    "age": 465,
-    "currency": "USD",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin213ds",
-    "avatar": "https://sun7-20.userapi.com/impg/a7Jb5JmdfcX2vSgZNBRHdrRgQEnEis7snS7Z7A/tKycwZWdozg.jpg?size=798x1064&quality=96&sign=840d497f0eeb4033ff96e4159a7fc274&type=album"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "jghdsddddasdsadad11",
+      "lastname": "asfdsdsddssddsds",
+      "age": 465,
+      "currency": "USD",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213ds",
+      "avatar": "https://sun7-20.userapi.com/impg/a7Jb5JmdfcX2vSgZNBRHdrRgQEnEis7snS7Z7A/tKycwZWdozg.jpg?size=798x1064&quality=96&sign=840d497f0eeb4033ff96e4159a7fc274&type=album"
+    },
+    {
+      "id": "2",
+      "first": "123sadasdad",
+      "lastname": "sad",
+      "age": 4265,
+      "currency": "USD",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213ds",
+      "avatar": "https://sun9-38.userapi.com/impg/1_5ms0eDub6NxpAwzuX-yZ1XoC2Rb6Jws1jNOw/VoQd37IOYv8.jpg?size=564x745&quality=96&sign=e8b6bf43944a914a1ac94bdd11ac4b45&type=album"
+    }
+  ]
 }

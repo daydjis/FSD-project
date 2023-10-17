@@ -1,13 +1,16 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { Profile } from 'entities/Profile';
+import { getProfileInfoForm, Profile } from 'entities/Profile';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import React, { memo, useMemo } from 'react';
 import { Select } from 'shared/ui/Select/Select';
 import { Country, Currency } from 'shared/const/common';
+import { useSelector } from 'react-redux';
+import { getAuthForm } from 'entities/Auth/model/selectors/getLogin';
+import { getAuthUserData } from 'entities/User';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -50,6 +53,10 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
     const parseCurrancy = useMemo(() => Object.keys(Currency).map((el) => ({ value: el, option: el })), []);
 
     const parseCountry = useMemo(() => Object.keys(Country).map((el) => ({ value: el, option: el })), []);
+
+    const currentUser = useSelector(getProfileInfoForm);
+    const editUser = useSelector(getAuthUserData);
+    const canEdit = currentUser?.id === editUser?.id;
 
     if (loading) {
         return (
@@ -133,27 +140,32 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                         }
                     />
 
-                    {readonly ? (
-                        <Button className={cls.Profilebtn} onClick={onEdit}>
-                            Редактировать
-                        </Button>
-                    ) : (
-                        <>
-                            <Button
-                                onClick={onSave}
-                                className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
-                            >
-                                Сохранить
-                            </Button>
-                            <Button
-                                className={cls.Profilebtn}
-                                theme={ButtonTheme.RED}
-                                onClick={onCancelEdit}
-                            >
-                                Отменить
-                            </Button>
-                        </>
-                    )}
+                    {canEdit ? (
+                        <div>
+                            {readonly ? (
+                                <Button className={cls.Profilebtn} onClick={onEdit}>
+                                    Редактировать
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button
+                                        onClick={onSave}
+                                        className={classNames(cls.Profilebtn, {}, ['margin-right: 10px'])}
+                                    >
+                                        Сохранить
+                                    </Button>
+                                    <Button
+                                        className={cls.Profilebtn}
+                                        theme={ButtonTheme.RED}
+                                        onClick={onCancelEdit}
+                                    >
+                                        Отменить
+                                    </Button>
+                                </>
+                            )}
+                        </div>
+                    ) : null}
+
                 </div>
                 <Avatar src={data?.avatar} width={200} height={200} border="50%" />
             </div>

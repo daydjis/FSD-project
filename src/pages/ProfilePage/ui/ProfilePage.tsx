@@ -15,6 +15,7 @@ import { ProfileCard } from 'entities/User/ui/ProfileCard/ProfileCard';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
 import { Country, Currency } from 'shared/const/common';
+import { useParams } from 'react-router-dom';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -34,10 +35,12 @@ const ProfilePage = memo((props: ProfilePageProps) => {
     const profileError = useSelector(getProfileError);
     const profileLoadingStatus = useSelector(getProfileLoading);
     const profileReadOnly = useSelector(getProfileReadonly);
-
+    const { id } = useParams<{id: string}>();
     useEffect((): void => {
-        dispatch(fetchProfileData());
-    }, [dispatch]);
+        if (id) {
+            dispatch(fetchProfileData(id));
+        }
+    }, [id, dispatch]);
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.setReadonly(false));
