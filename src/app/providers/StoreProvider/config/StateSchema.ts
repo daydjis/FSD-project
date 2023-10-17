@@ -4,12 +4,13 @@ import { LoginSchema } from 'futures/AuthByUsername/index';
 import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { CombinedState, Dispatch } from 'redux';
+import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 import { ArticlesDetailsSchema } from 'entities/Articles';
+import { ArticleCommentStateSchema } from 'pages/ArticlesPageDetails';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -19,6 +20,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articlesDetails?: ArticlesDetailsSchema;
+    articlesDetailsComments?: ArticleCommentStateSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

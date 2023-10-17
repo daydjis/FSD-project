@@ -24,7 +24,7 @@ export const Avatar = memo((props: AvatarProps) => {
     };
     return (
         <img
-            className={classNames(cls.Avatar, {}, [])}
+            className={classNames(cls.Avatar, {}, [className])}
             src={src}
             width={width}
             height={height}

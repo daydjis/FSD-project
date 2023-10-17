@@ -109,13 +109,15 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://sun7-20.userapi.com/impg/a7Jb5JmdfcX2vSgZNBRHdrRgQEnEis7snS7Z7A/tKycwZWdozg.jpg?size=798x1064&quality=96&sign=840d497f0eeb4033ff96e4159a7fc274&type=album"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://sun7-20.userapi.com/impg/a7Jb5JmdfcX2vSgZNBRHdrRgQEnEis7snS7Z7A/tKycwZWdozg.jpg?size=798x1064&quality=96&sign=840d497f0eeb4033ff96e4159a7fc274&type=album"
     }
   ],
   "profile": {
